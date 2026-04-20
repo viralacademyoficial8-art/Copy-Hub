@@ -5,9 +5,9 @@
 // ============================================================
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'TU_USUARIO_BD');     // Ej: u123456789_copyhub
-define('DB_PASS', 'TU_CONTRASEÑA_BD'); // La contraseña de tu BD en hPanel
-define('DB_NAME', 'TU_NOMBRE_BD');      // Ej: u123456789_copyhub
+define('DB_USER', 'luciano');     // Ej: u123456789_copyhub
+define('DB_PASS', 'LuK6C9u_2m7b$Qa'); // La contraseña de tu BD en hPanel
+define('DB_NAME', 'u149732149_copyhub');      // Ej: u123456789_copyhub
 
 // ============================================================
 // Credenciales del panel de administración
