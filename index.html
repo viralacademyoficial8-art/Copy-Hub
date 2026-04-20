@@ -15,7 +15,11 @@
   <!-- ===== HEADER ===== -->
   <header class="header" id="header">
     <div class="container header__inner">
-      <div class="header__logo-placeholder"></div>
+      <div class="header__logo-placeholder">
+        <a href="#inicio">
+          <img src="images/copy-hub-logo.jpeg" alt="Copy Hub" class="header__logo-img">
+        </a>
+      </div>
       <nav class="header__nav">
         <a href="#nosotros">Nosotros</a>
         <a href="#servicios">Servicios</a>
@@ -180,26 +184,26 @@
           <div class="form-row">
             <div class="form-group">
               <label>Nombre completo *</label>
-              <input type="text" placeholder="Juan Pérez" required />
+              <input type="text" name="nombre" placeholder="Juan Pérez" required />
             </div>
             <div class="form-group">
               <label>Empresa *</label>
-              <input type="text" placeholder="Nombre de tu empresa" required />
+              <input type="text" name="empresa" placeholder="Nombre de tu empresa" required />
             </div>
           </div>
           <div class="form-row">
             <div class="form-group">
               <label>Email corporativo *</label>
-              <input type="email" placeholder="tu.email@empresa.com" required />
+              <input type="email" name="email" placeholder="tu.email@empresa.com" required />
             </div>
             <div class="form-group">
               <label>Teléfono *</label>
-              <input type="tel" placeholder="(55) 1234-5678" required />
+              <input type="tel" name="telefono" placeholder="(55) 1596-2617" required />
             </div>
           </div>
           <div class="form-group">
             <label>¿Qué te interesa? *</label>
-            <select required>
+            <select name="interes" required>
               <option value="" disabled selected>Selecciona una opción</option>
               <option>Compra de equipo</option>
               <option>Renta de equipo</option>
@@ -210,7 +214,7 @@
           </div>
           <div class="form-group">
             <label>Volumen mensual aproximado</label>
-            <select>
+            <select name="volumen">
               <option value="" disabled selected>Selecciona un rango (opcional)</option>
               <option>Menos de 1,000 impresiones</option>
               <option>1,000 - 5,000 impresiones</option>
@@ -220,7 +224,7 @@
           </div>
           <div class="form-group">
             <label>Mensaje adicional</label>
-            <textarea placeholder="Cuéntanos más sobre tus necesidades (opcional)" rows="3"></textarea>
+            <textarea name="mensaje" placeholder="Cuéntanos más sobre tus necesidades (opcional)" rows="3"></textarea>
           </div>
           <button type="submit" class="btn btn--gradient btn--block btn--lg">
             <i class="fa-solid fa-paper-plane"></i> Enviar Solicitud
@@ -512,7 +516,7 @@
       </div>
       <div class="final-cta__actions">
         <a href="#contacto" class="btn btn--white btn--lg"><i class="fa-solid fa-file-invoice"></i> Cotizar ahora</a>
-        <a href="https://wa.me/5512345678" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg"><i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp</a>
+        <a href="https://wa.me/525515962617" target="_blank" rel="noopener" class="btn btn--whatsapp btn--lg"><i class="fa-brands fa-whatsapp"></i> Hablar por WhatsApp</a>
         <a href="#contacto" class="btn btn--outline-white btn--lg"><i class="fa-regular fa-calendar"></i> Agendar servicio</a>
       </div>
     </div>
@@ -575,7 +579,7 @@
             <span class="contact-icon"><i class="fa-solid fa-phone"></i></span>
             <div>
               <small>Teléfono</small>
-              <span>(55) 1234-5678</span>
+              <span>(55) 1596-2617</span>
             </div>
           </li>
           <li>
@@ -606,6 +610,13 @@
       </div>
     </div>
   </footer>
+
+  <!-- ===== FLOATING WHATSAPP ===== -->
+  <a href="https://wa.me/525515962617?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20sobre%20sus%20servicios%20de%20impresoras%20y%20copiadoras."
+     target="_blank" rel="noopener" class="whatsapp-float" aria-label="Contactar por WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-float__label">¿Hablamos?</span>
+  </a>
 
   <script src="js/main.js"></script>
 </body>
