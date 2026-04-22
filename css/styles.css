@@ -692,6 +692,7 @@ ul { list-style: none; }
   display: flex; align-items: center; gap: 10px;
   font-size: 22px; font-weight: 800;
 }
+.footer__logo-img { height: 56px; width: auto; object-fit: contain; display: block; }
 .footer-logo-text .text-white { color: #fff; }
 .footer-logo-text .text-orange { color: var(--orange-yellow); }
 .footer__brand p { font-size: 14px; line-height: 1.7; }
@@ -726,6 +727,7 @@ ul { list-style: none; }
 .footer__col ul a:hover { color: #fff; }
 .footer__col ul i { font-size: 10px; color: var(--orange-yellow); }
 .footer__col ul .fa-check { color: var(--teal-light); font-size: 12px; }
+.contact-icon i { color: #fff; font-size: 16px; }
 
 .footer__contact { display: flex; flex-direction: column; gap: 16px !important; }
 .footer__contact li { display: flex; align-items: flex-start; gap: 12px !important; }

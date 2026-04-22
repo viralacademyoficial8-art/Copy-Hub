@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login-wrap">
     <div class="login-card">
       <div class="login-brand">
-        <img src="../images/copy-hub-logo.jpeg" alt="Copy Hub" class="login-logo-img">
+        <img src="../images/copy-hub-logo2.avif" alt="Copy Hub" class="login-logo-img">
         <p>Panel de Administración</p>
       </div>
       <?php if ($error): ?>

@@ -95,7 +95,7 @@ try {
 
   <header class="admin-header">
     <div class="admin-header__inner">
-      <img src="../images/copy-hub-logo.jpeg" alt="Copy Hub" class="admin-logo-img">
+      <img src="../images/copy-hub-logo2.avif" alt="Copy Hub" class="admin-logo-img">
       <div class="admin-header__right">
         <span class="admin-user"><i class="fa-solid fa-circle-user"></i> <?= htmlspecialchars(ADMIN_USERNAME) ?></span>
         <a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
