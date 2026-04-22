@@ -4,7 +4,7 @@
 // ============================================================
 
 define('DB_HOST', 'localhost');
-define('DB_USER', 'luciano');
+define('DB_USER', 'u149732149_luciano');
 define('DB_PASS', 'LuK6C9u_2m7b$Qa');
 define('DB_NAME', 'u149732149_copyhub');
 
