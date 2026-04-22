@@ -350,8 +350,6 @@ ul { list-style: none; }
 .cta-form {
   padding: 80px 0;
   background: radial-gradient(ellipse at 30% 50%, #0d3266 0%, #0a1f3d 60%, #0d3266 100%);
-  background-image: radial-gradient(circle, rgba(255,255,255,0.03) 1px, transparent 1px);
-  background-size: 28px 28px;
   position: relative;
 }
 .cta-form::before {
