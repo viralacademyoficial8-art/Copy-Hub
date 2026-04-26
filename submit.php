@@ -44,6 +44,7 @@ try {
     echo json_encode(['success' => true]);
 
 } catch (PDOException $e) {
+    error_log('[CopyHub] submit error: ' . $e->getMessage());
     http_response_code(500);
     echo json_encode(['success' => false, 'message' => 'Error al guardar la solicitud. Intenta de nuevo.']);
 }

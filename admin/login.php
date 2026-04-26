@@ -10,7 +10,8 @@ require_once '../config.php';
 
 $error = '';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if ($_POST['username'] === ADMIN_USERNAME && $_POST['password'] === ADMIN_PASSWORD) {
+    if ($_POST['username'] === ADMIN_USERNAME && password_verify($_POST['password'], ADMIN_PASSWORD_HASH)) {
+        session_regenerate_id(true);
         $_SESSION['admin_logged'] = true;
         header('Location: index.php');
         exit;
@@ -30,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   <div class="login-wrap">
     <div class="login-card">
       <div class="login-brand">
-        <img src="../images/copy-hub-logo2.avif" alt="Copy Hub" class="login-logo-img">
+        <img src="../images/CH_png_00.png" alt="Copy Hub" class="login-logo-img">
         <p>Panel de Administración</p>
       </div>
       <?php if ($error): ?>

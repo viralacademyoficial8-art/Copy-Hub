@@ -8,6 +8,16 @@ if (!isset($_SESSION['admin_logged'])) {
 
 require_once '../config.php';
 
+// CSRF token
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+$csrf = $_SESSION['csrf_token'];
+
+function csrf_valid(): bool {
+    return isset($_POST['csrf_token']) && hash_equals($_SESSION['csrf_token'], $_POST['csrf_token']);
+}
+
 // CSV Export (before any HTML output)
 if (isset($_GET['export']) && $_GET['export'] === 'csv') {
     try {
@@ -24,22 +34,22 @@ if (isset($_GET['export']) && $_GET['export'] === 'csv') {
     exit;
 }
 
-// Mark as read
-if (isset($_GET['leido']) && is_numeric($_GET['leido'])) {
+// Mark as read (POST + CSRF)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['leido']) && is_numeric($_POST['leido']) && csrf_valid()) {
     try {
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8mb4', DB_USER, DB_PASS, [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
-        $pdo->prepare('UPDATE contactos SET leido=1 WHERE id=?')->execute([(int)$_GET['leido']]);
-    } catch (Exception $e) {}
+        $pdo->prepare('UPDATE contactos SET leido=1 WHERE id=?')->execute([(int)$_POST['leido']]);
+    } catch (Exception $e) { error_log('[CopyHub] leido: '.$e->getMessage()); }
     header('Location: index.php');
     exit;
 }
 
-// Delete
-if (isset($_GET['eliminar']) && is_numeric($_GET['eliminar'])) {
+// Delete (POST + CSRF)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar']) && is_numeric($_POST['eliminar']) && csrf_valid()) {
     try {
         $pdo = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME.';charset=utf8mb4', DB_USER, DB_PASS, [PDO::ATTR_ERRMODE=>PDO::ERRMODE_EXCEPTION]);
-        $pdo->prepare('DELETE FROM contactos WHERE id=?')->execute([(int)$_GET['eliminar']]);
-    } catch (Exception $e) {}
+        $pdo->prepare('DELETE FROM contactos WHERE id=?')->execute([(int)$_POST['eliminar']]);
+    } catch (Exception $e) { error_log('[CopyHub] eliminar: '.$e->getMessage()); }
     header('Location: index.php');
     exit;
 }
@@ -95,7 +105,7 @@ try {
 
   <header class="admin-header">
     <div class="admin-header__inner">
-      <img src="../images/copy-hub-logo2.avif" alt="Copy Hub" class="admin-logo-img">
+      <img src="../images/CH_png_00.png" alt="Copy Hub" class="admin-logo-img">
       <div class="admin-header__right">
         <span class="admin-user"><i class="fa-solid fa-circle-user"></i> <?= htmlspecialchars(ADMIN_USERNAME) ?></span>
         <a href="logout.php" class="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Salir</a>
@@ -192,13 +202,20 @@ try {
                 </td>
                 <td class="actions">
                   <?php if (!$c['leido']): ?>
-                    <a href="?leido=<?= $c['id'] ?>" class="btn-action btn-read" title="Marcar como leído"><i class="fa-solid fa-check"></i></a>
+                    <form method="POST" style="display:inline">
+                      <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
+                      <input type="hidden" name="leido" value="<?= $c['id'] ?>">
+                      <button type="submit" class="btn-action btn-read" title="Marcar como leído"><i class="fa-solid fa-check"></i></button>
+                    </form>
                   <?php endif; ?>
                   <a href="?ver=<?= $c['id'] ?><?= $search ? '&buscar='.urlencode($search) : '' ?><?= $filter !== 'todos' ? '&filtro='.$filter : '' ?>"
                      class="btn-action btn-view <?= $verDetalle === (int)$c['id'] ? 'active' : '' ?>"
                      title="Ver detalle"><i class="fa-solid fa-eye"></i></a>
-                  <a href="?eliminar=<?= $c['id'] ?>" class="btn-action btn-delete" title="Eliminar"
-                     onclick="return confirm('¿Eliminar esta solicitud? Esta acción no se puede deshacer.')"><i class="fa-solid fa-trash"></i></a>
+                  <form method="POST" style="display:inline" onsubmit="return confirm('¿Eliminar esta solicitud? Esta acción no se puede deshacer.')">
+                    <input type="hidden" name="csrf_token" value="<?= $csrf ?>">
+                    <input type="hidden" name="eliminar" value="<?= $c['id'] ?>">
+                    <button type="submit" class="btn-action btn-delete" title="Eliminar"><i class="fa-solid fa-trash"></i></button>
+                  </form>
                 </td>
               </tr>
 
