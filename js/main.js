@@ -49,6 +49,14 @@ if (form) {
       const data = await response.json();
 
       if (data.success) {
+        // Conversión Google Ads: formulario enviado con éxito
+        if (typeof gtag === 'function') {
+          gtag('event', 'conversion', {
+            'send_to': 'AW-18066697748/-4rbCMOstpYcEJTc76ZD',
+            'value': 1.0,
+            'currency': 'MXN'
+          });
+        }
         form.innerHTML = `
           <div class="form-success">
             <i class="fa-solid fa-circle-check"></i>
